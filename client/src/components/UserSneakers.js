@@ -95,7 +95,7 @@ const UserSneakers = () => {
             body: JSON.stringify({ note: sneakerForm.description }) // Send only the note
         };
 
-        fetch(`http://127.0.0.1:5555/add-note-to-user-sneaker/${selectedSneakerId}`, requestOptions)
+        fetch(`/add-note-to-user-sneaker/${selectedSneakerId}`, requestOptions)
             .then(res => res.json())
             .then(data => {
                 if (data.updatedUserSneaker) {
@@ -133,7 +133,7 @@ const UserSneakers = () => {
                 })
             };
 
-            fetch(`http://127.0.0.1:5555/delete-sneaker`, requestOptions)
+            fetch(`/delete-sneaker`, requestOptions)
                 .then(res => res.json())
                 .then(data => {
                     toast(data.message)

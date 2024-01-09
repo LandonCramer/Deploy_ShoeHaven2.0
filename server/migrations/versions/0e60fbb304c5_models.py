@@ -1,8 +1,8 @@
-"""empty message
+"""models
 
-Revision ID: 3805c8e04bc9
+Revision ID: 0e60fbb304c5
 Revises: 
-Create Date: 2024-01-02 18:19:34.115679
+Create Date: 2024-01-09 13:26:53.095735
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3805c8e04bc9'
+revision = '0e60fbb304c5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('link', sa.String(), nullable=True),
     sa.Column('stripe_product_id', sa.String(), nullable=True),
     sa.Column('stripe_price_id', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('username', sa.String(length=25), nullable=False),
     sa.Column('email', sa.String(length=80), nullable=False),
     sa.Column('password', sa.String(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('username')
@@ -46,7 +46,7 @@ def upgrade():
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_carts_user_id_users')),
     sa.PrimaryKeyConstraint('id')
@@ -55,7 +55,14 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('sneakerid', sa.Integer(), nullable=False),
     sa.Column('note', sa.String(length=1000), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('brand', sa.String(), nullable=True),
+    sa.Column('name', sa.String(), nullable=True),
+    sa.Column('color', sa.String(), nullable=True),
+    sa.Column('description', sa.String(), nullable=True),
+    sa.Column('price', sa.Float(), nullable=True),
+    sa.Column('image', sa.String(), nullable=True),
+    sa.Column('link', sa.String(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['sneakerid'], ['sneakers.id'], name=op.f('fk_user_sneakers_sneakerid_sneakers')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_user_sneakers_user_id_users')),
@@ -66,7 +73,7 @@ def upgrade():
     sa.Column('cart_id', sa.Integer(), nullable=True),
     sa.Column('sneaker_id', sa.Integer(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['cart_id'], ['carts.id'], name=op.f('fk_cart_sneakers_cart_id_carts')),
     sa.ForeignKeyConstraint(['sneaker_id'], ['sneakers.id'], name=op.f('fk_cart_sneakers_sneaker_id_sneakers')),
