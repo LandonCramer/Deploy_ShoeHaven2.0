@@ -35,7 +35,7 @@ const CreateSneakerPage = () => {
       },
       body:JSON.stringify( sneaker)
     }
-    fetch('http://127.0.0.1:5555/sneakers', requestOptions)
+    fetch('/sneakers', requestOptions)
     .then(res => res.json())
     .then(data => {
         console.log('TEST Add Sneaker', data)

@@ -70,10 +70,14 @@ function SneakerCard({image, name, color, link, description, price, id, brand, c
           <Card.Title>{shopName}</Card.Title>
           <Card.Subtitle>{shopColorway}</Card.Subtitle>
           <Card.Text>
+          <br/>
             {shopDescription}
+            ${shopPrice}
           </Card.Text>
+          <h4>GRAND OPENING SALE!!</h4>
+          <br></br>
           <Button variant="dark" href={shopLink}>
-             {"Purchase for $"}{shopPrice}{" from ShoeHaven"}
+          {"Purchase "}{" from "}{shopBrand}
              </Button><br/><br/>
           <Button variant="dark" onClick={addShoesToCollection}>
              {"Add to Collection"} </Button>

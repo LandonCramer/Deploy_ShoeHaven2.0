@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response, redirect
+from flask import Flask, request, jsonify, make_response, redirect, render_template
 from flask_restful import Resource, reqparse
 from config import app, db, api #importing app and db from config
 
@@ -379,6 +379,13 @@ class DeleteUserSneaker(Resource):
 
 # Add the resource to the API
 api.add_resource(DeleteUserSneaker, '/delete-sneaker')
+
+@app.route('/')
+# @app.route('/productions/<int:id>')
+# @app.route('/productions/<int:id>/edit')
+# @app.route('/productions/new')
+def index(id=0):
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

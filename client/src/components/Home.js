@@ -34,7 +34,7 @@ const LoggedInHome = () => {
   }, []); // Empty dependency array means this runs once after the component mounts
 
   const fetchSneakers = () => {
-    fetch("http://127.0.0.1:5555/sneakers")
+    fetch("/sneakers")
       .then((res) => res.json())
       .then((data) => setSneakers(data))
       .catch((err) => console.log(err));
@@ -60,10 +60,11 @@ const LoggedInHome = () => {
       </div>
     </div>
   );
-
+  const userName = currentUser.current_user_id;
   return (
     <div className="sneakers">
-      <h1>List of Sneakers: ShoeHaven Logged In</h1>
+     <h1>Welcome {userName}!</h1>
+      <br/>
       {storeFront}
     </div>
   );

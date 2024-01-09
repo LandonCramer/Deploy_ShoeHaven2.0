@@ -85,43 +85,44 @@ function UserSneakerCard({image, name, color, link, description, price, id, bran
       // };
     
  
-  return (
+      return (
     
-      <Card variant="dark" style={{ width: '25rem' }}>
-        <Card.Img variant="left" src={shopImage} alt={shopName} />
-        <Card.Body>
-          <Card.Title>{shopName}</Card.Title>
-          <Card.Subtitle>{shopColorway}</Card.Subtitle>
-          <Card.Text>
-            {shopDescription}
-          </Card.Text>
-          <div>
-          {note && <div>Note: {note}</div>}
-          </div>
-          <Button variant="dark" href={shopLink}>
-             {"Purchase for $"}{shopPrice}{" from ShoeHaven"}
-             </Button><br/><br/>
-         
-            <br/>
-            <br/>
-            <Button variant='primary' onClick={()=>onClick(newShoe)}>Update</Button>
-            {' '}
-            <Button variant='primary' style={{backgroundColor:'red'}} onClick={()=>onDelete(id)}>Delete</Button>
-            {' '}
-            <Button onClick={() => handleWishList(id)}>Wish List</Button>
-            <br/>
-            <br/>
-            {/* <form onSubmit={()=>handleSubmit(id)}>
-                <Button variant='primary' type='submit'>Checkout</Button>
-            </form> */}
-            <form action={`/create-checkout-session/${id}`} method='POST'>
+        <Card variant="dark" style={{ width: '25rem' }}>
+          <Card.Img variant="left" src={shopImage} alt={shopName} />
+          <Card.Body>
+            <Card.Title>{shopName}</Card.Title>
+            <Card.Subtitle>{shopColorway}</Card.Subtitle>
+            <Card.Text>
+              {shopDescription}
+            </Card.Text>
+            <div>
+            {note && <div>Note: {note}</div>}
+            </div>
+            <h4>SALE: $100</h4>
+            <br></br>
+            <Button variant="dark" href={shopLink}>
+            {"Purchase "}{" from "}{shopBrand}
+               </Button><br/><br/>
+           
+              <br/>
+              <Button variant='primary' onClick={()=>onClick(newShoe)}>Update</Button>
+              {' '}
+              <Button variant='primary' style={{backgroundColor:'red'}} onClick={()=>onDelete(id)}>Delete</Button>
+              {' '}
+              <Button onClick={() => handleWishList(id)}>Wish List</Button>
+              <br/>
+              <br/>
+              {/* <form onSubmit={()=>handleSubmit(id)}>
                   <Button variant='primary' type='submit'>Checkout</Button>
-                </form>
-        </Card.Body>
-        <ToastContainer />
-      </Card>    
+              </form> */}
+              <form action={`/create-checkout-session/${id}`} method='POST'>
+                    <Button variant='primary' type='submit'>Checkout</Button>
+                  </form>
+          </Card.Body>
+          <ToastContainer />
+        </Card>    
+    
+    )
+  }
   
-  )
-}
-
-export default UserSneakerCard;
+  export default UserSneakerCard;
