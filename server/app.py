@@ -381,22 +381,10 @@ class DeleteUserSneaker(Resource):
 # api.add_resource(DeleteUserSneaker, '/delete-sneaker')
 
 @app.route('/')
-@app.route('/hello')
 
-
-
-
-
-
-
-@app.route('/user-sneakers/<string:user_id>')
-@app.route('/add-note-to-user-sneaker/<int:sneakerid>')
-@app.route('/add-to-wish-list')
-@app.route('/delete-sneaker')
-@app.route('/create-checkout-session/<int:id>')
-@app.route('/productions/<int:id>')
-@app.route('/productions/<int:id>/edit')
-@app.route('/productions/new')
+# @app.route('/productions/<int:id>')
+# @app.route('/productions/<int:id>/edit')
+# @app.route('/productions/new')
 def index(id=0):
     return render_template("index.html")
 
