@@ -1,4 +1,4 @@
-import '../styling/Subscription.css'
+
 const Subscription = () => {
     return (
       <div>
