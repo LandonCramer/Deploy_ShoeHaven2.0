@@ -335,7 +335,7 @@ api.add_resource(AddToWishList, '/add-to-wish-list')
 YOUR_DOMAIN = 'http://localhost:3000'
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 # class CreateCheckoutSession(Resource):
-@app.route('/create-checkout-session/<int:id>',methods=["POST"])
+# @app.route('/create-checkout-session/<int:id>',methods=["POST"])
 def post(id):
 
     sneaker_to_purchase = Sneaker.query.get(id)
@@ -378,13 +378,32 @@ class DeleteUserSneaker(Resource):
             return {'message': 'Sneaker not found in collection'}, 404
 
 # Add the resource to the API
-api.add_resource(DeleteUserSneaker, '/delete-sneaker')
+# api.add_resource(DeleteUserSneaker, '/delete-sneaker')
 
 @app.route('/')
-# @app.route('/productions/<int:id>')
-# @app.route('/productions/<int:id>/edit')
-# @app.route('/productions/new')
+@app.route('/hello')
+
+
+
+
+
+
+
+@app.route('/user-sneakers/<string:user_id>')
+@app.route('/add-note-to-user-sneaker/<int:sneakerid>')
+@app.route('/add-to-wish-list')
+@app.route('/delete-sneaker')
+@app.route('/create-checkout-session/<int:id>')
+@app.route('/productions/<int:id>')
+@app.route('/productions/<int:id>/edit')
+@app.route('/productions/new')
 def index(id=0):
+    return render_template("index.html")
+
+# Catch-all Route for React Router
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     return render_template("index.html")
 
 if __name__ == "__main__":
